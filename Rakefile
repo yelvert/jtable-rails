@@ -37,7 +37,6 @@ task :default => :spec
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "jtable-rails #{version}"
   rdoc.rdoc_files.include('README*')
