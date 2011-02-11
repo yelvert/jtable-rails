@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Taylor Yelverton"]
-  s.date = %q{2011-02-07}
+  s.date = %q{2011-02-10}
   s.description = %q{A Rails gem to power the jTable jQuery plugin}
   s.email = %q{taylor@synergy-solutions.biz}
   s.extra_rdoc_files = [
@@ -28,6 +28,10 @@ Gem::Specification.new do |s|
     "VERSION",
     "jtable-rails.gemspec",
     "lib/jtable-rails.rb",
+    "lib/jtable-rails/action_controller.rb",
+    "lib/jtable-rails/active_record.rb",
+    "spec/controller_specs/people_controller_spec.rb",
+    "spec/fabricators/person.rb",
     "spec/model_specs/person_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/rails_app/.gitignore",
@@ -61,6 +65,7 @@ Gem::Specification.new do |s|
     "spec/support/rails_app/config/locales/en.yml",
     "spec/support/rails_app/config/routes.rb",
     "spec/support/rails_app/db/migrate/20110207142623_create_people.rb",
+    "spec/support/rails_app/db/schema.rb",
     "spec/support/rails_app/db/seeds.rb",
     "spec/support/rails_app/public/stylesheets/scaffold.css",
     "spec/support/rails_app/script/rails"
@@ -71,6 +76,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{A Rails gem to power the jTable jQuery plugin}
   s.test_files = [
+    "spec/controller_specs/people_controller_spec.rb",
+    "spec/fabricators/person.rb",
     "spec/model_specs/person_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/rails_app/app/controllers/application_controller.rb",
@@ -100,23 +107,29 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3.0"])
+      s.add_development_dependency(%q<bundler>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, [">= 0"])
+      s.add_development_dependency(%q<fabrication>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rails>, ["= 3.0.3"])
+      s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.0.3"])
     else
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<rspec>, ["~> 2.3.0"])
+      s.add_dependency(%q<bundler>, [">= 0"])
+      s.add_dependency(%q<rspec>, [">= 0"])
+      s.add_dependency(%q<fabrication>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rails>, ["= 3.0.3"])
+      s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_dependency(%q<rails>, ["= 3.0.3"])
     end
   else
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<rspec>, ["~> 2.3.0"])
+    s.add_dependency(%q<bundler>, [">= 0"])
+    s.add_dependency(%q<rspec>, [">= 0"])
+    s.add_dependency(%q<fabrication>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rails>, ["= 3.0.3"])
+    s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     s.add_dependency(%q<rails>, ["= 3.0.3"])
   end
 end
