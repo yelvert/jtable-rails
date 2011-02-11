@@ -24,9 +24,6 @@ describe "PeopleController" do
   end
   
   it "should return the appropriate json" do
-    10.times do |i|
-      Fabricate(:person)
-    end
     people = Person.jtable_query(@params)
     @people_controller.jtable_for_json(people, @params).to_json.should eql({:total_items => people.count, :items => people.jtable_paginate(@params[:limit], @params[:offset])}.to_json)
   end
