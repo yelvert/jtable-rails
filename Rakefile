@@ -18,7 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.license = "Ms-PL"
   gem.summary = "A Rails gem to power the jTable jQuery plugin"
   gem.description = "A Rails gem to power the jTable jQuery plugin"
-  gem.email = "taylor@synergy-solutions.biz"
+  gem.email = "tny5357@gmail.com"
   gem.authors = ["Taylor Yelverton"]
   gem.add_runtime_dependency 'rails', '3.0.3'
 end

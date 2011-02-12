@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["Taylor Yelverton"]
   s.date = %q{2011-02-11}
   s.description = %q{A Rails gem to power the jTable jQuery plugin}
-  s.email = %q{taylor@synergy-solutions.biz}
+  s.email = %q{tny5357@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
