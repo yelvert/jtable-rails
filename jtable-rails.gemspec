@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Taylor Yelverton"]
-  s.date = %q{2011-02-11}
+  s.date = %q{2011-02-28}
   s.description = %q{A Rails gem to power the jTable jQuery plugin}
   s.email = %q{tny5357@gmail.com}
   s.extra_rdoc_files = [
@@ -111,26 +111,26 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<fabrication>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_development_dependency(%q<rails>, ["= 3.0.3"])
+      s.add_development_dependency(%q<rails>, ["= 3.0.5"])
       s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
-      s.add_runtime_dependency(%q<rails>, ["= 3.0.3"])
+      s.add_runtime_dependency(%q<rails>, ["= 3.0.5"])
     else
       s.add_dependency(%q<bundler>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<fabrication>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_dependency(%q<rails>, ["= 3.0.3"])
+      s.add_dependency(%q<rails>, ["= 3.0.5"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
-      s.add_dependency(%q<rails>, ["= 3.0.3"])
+      s.add_dependency(%q<rails>, ["= 3.0.5"])
     end
   else
     s.add_dependency(%q<bundler>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<fabrication>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-    s.add_dependency(%q<rails>, ["= 3.0.3"])
+    s.add_dependency(%q<rails>, ["= 3.0.5"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
-    s.add_dependency(%q<rails>, ["= 3.0.3"])
+    s.add_dependency(%q<rails>, ["= 3.0.5"])
   end
 end
 

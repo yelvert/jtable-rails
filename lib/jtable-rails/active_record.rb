@@ -36,7 +36,7 @@ module JTable
               end
               wheres << where(where_query.inject(&:or))
             end
-            wheres.inject(&:&)
+            wheres.inject(&:merge)
           end
         }
         
@@ -46,7 +46,7 @@ module JTable
             search_terms.split(" ").each do |term|
               wheres << where(self.send("jtable_search_#{column}", term))
             end
-            wheres.inject(&:&)
+            wheres.inject(&:merge)
           end
         }
         
@@ -75,7 +75,7 @@ module JTable
             end
           end
           queries << jtable_order(jtable_params[:sort_column], jtable_params[:sort_direction])
-          queries.inject(&:&)
+          queries.inject(&:merge)
         }
       end
     end
