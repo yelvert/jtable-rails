@@ -1,7 +1,7 @@
 PATH
   remote: /Users/yelvert/projects/jtable/jtable-rails
   specs:
-    jtable-rails (0.1.1)
+    jtable-rails (0.1.2)
       rails (= 3.0.5)
 
 GEM

@@ -7,7 +7,7 @@ module JTable
           self
         end
         fields.each do |field|
-          metaclass.instance_eval do 
+          metaclass.instance_eval do
             define_method "jtable_search_#{field}" do |term|
               unless [:date].include? arel_table[field.to_sym].column.type
                 if [:integer, :boolean].include? arel_table[field.to_sym].column.type
@@ -17,11 +17,33 @@ module JTable
                 end
               end
             end
-        
+            
             define_method "jtable_order_#{field}" do |direction|
               "#{field} #{direction}"
             end
           end
+          define_method "jtable_attribute_#{field}" do
+            if self.class.arel_table[field.to_sym].column.type == :date
+              self.send(field).strftime("%m/%d/%Y %I:%M%P")
+            else
+              self.send(field)
+            end
+          end
+        end
+        
+        metaclass.instance_eval do
+          define_method "jtable_attributes" do
+            fields
+          end
+        end
+        
+        define_method "jtable_item" do
+          item_hash = {}
+          item_hash[:id] = self.id
+          fields.each do |field|
+            item_hash[field.to_sym] = self.send("jtable_attribute_#{field}")
+          end
+          item_hash
         end
         
         scope :jtable_search, lambda { |jtable_params|

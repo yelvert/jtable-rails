@@ -28,7 +28,14 @@ describe "Person" do
     [:first_name, :last_name, :age, :date_of_birth, :gender, :alive].each do |attribute|
       Person.respond_to?("jtable_search_#{attribute}").should be_true
       Person.respond_to?("jtable_order_#{attribute}").should be_true
+      Person.respond_to?("jtable_attributes").should be_true
+      Person.new.respond_to?("jtable_attribute_#{attribute}").should be_true
+      Person.new.respond_to?("jtable_item").should be_true
     end
+  end
+  
+  it "should know jtables attributes" do
+    Person.jtable_attributes.should eql([:first_name, :last_name, :age, :date_of_birth, :gender, :alive])
   end
   
   it "should load initial set" do
@@ -69,5 +76,10 @@ describe "Person" do
     @params[:sort_column] = "age"
     @params[:sort_direction] = "ASC"
     Person.jtable_query(@params).to_json.should eql(Person.order('age ASC').to_json)
+  end
+  
+  it "should format an item for jtable" do
+    person = Fabricate(:person, :first_name => "John", :last_name => "Smith", :age => 21, :date_of_birth => 21.years.ago, :gender => "Male", :alive => true)
+    person.jtable_item.should eql({:id => person.id, :first_name => "John", :last_name => "Smith", :age => 21, :date_of_birth => 21.years.ago.strftime("%m/%d/%Y %I:%M%P"), :gender => "Male", :alive => true})
   end
 end

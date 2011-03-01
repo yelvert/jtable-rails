@@ -25,6 +25,7 @@ describe "PeopleController" do
   
   it "should return the appropriate json" do
     people = Person.jtable_query(@params)
-    @people_controller.jtable_for_json(people, @params).to_json.should eql({:total_items => people.count, :items => people.jtable_paginate(@params[:limit], @params[:offset])}.to_json)
+    jtable_items = people.jtable_paginate(@params[:limit], @params[:offset]).collect(&:jtable_item)
+    @people_controller.jtable_for_json(people, @params).to_json.should eql({:total_items => people.count, :items => jtable_items}.to_json)
   end
 end
