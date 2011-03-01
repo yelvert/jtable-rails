@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{jtable-rails}
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Taylor Yelverton"]
@@ -30,10 +30,14 @@ Gem::Specification.new do |s|
     "lib/jtable-rails.rb",
     "lib/jtable-rails/action_controller.rb",
     "lib/jtable-rails/active_record.rb",
+    "lib/jtable-rails/railtie.rb",
+    "lib/jtable-rails/version.rb",
+    "lib/tasks/jtable_rails.rake",
     "spec/controller_specs/people_controller_spec.rb",
     "spec/fabricators/person.rb",
     "spec/model_specs/person_spec.rb",
     "spec/spec_helper.rb",
+    "spec/support/rails_app/.DS_Store",
     "spec/support/rails_app/.gitignore",
     "spec/support/rails_app/Gemfile",
     "spec/support/rails_app/Gemfile.lock",
@@ -67,8 +71,14 @@ Gem::Specification.new do |s|
     "spec/support/rails_app/db/migrate/20110207142623_create_people.rb",
     "spec/support/rails_app/db/schema.rb",
     "spec/support/rails_app/db/seeds.rb",
+    "spec/support/rails_app/public/images/jTable-icons.png",
+    "spec/support/rails_app/public/images/jTable-processing_bg.png",
+    "spec/support/rails_app/public/javascripts/jTable.js",
+    "spec/support/rails_app/public/stylesheets/jTable.css",
     "spec/support/rails_app/public/stylesheets/scaffold.css",
-    "spec/support/rails_app/script/rails"
+    "spec/support/rails_app/script/rails",
+    "spec/support/rails_app/tmp/.DS_Store",
+    "spec/support/rails_app/tmp/jtable.zip"
   ]
   s.homepage = %q{http://github.com/yelvert/jtable-rails}
   s.licenses = ["Ms-PL"]
