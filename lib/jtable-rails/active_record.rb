@@ -2,13 +2,13 @@ module JTable
   module ActiveRecord
     extend ActiveSupport::Concern
     module ClassMethods
-      def jtable(*fields)
+      def jtable(name, *fields)
         metaclass = class << self
           self
         end
         fields.each do |field|
           metaclass.instance_eval do
-            define_method "jtable_search_#{field}" do |term|
+            define_method "jtable_#{name}_search_#{field}" do |term|
               unless [:date].include? arel_table[field.to_sym].column.type
                 if [:integer, :boolean].include? arel_table[field.to_sym].column.type
                   arel_table[field.to_sym].eq(term.to_i)
@@ -18,11 +18,11 @@ module JTable
               end
             end
             
-            define_method "jtable_order_#{field}" do |direction|
+            define_method "jtable_#{name}_order_#{field}" do |direction|
               "#{field} #{direction}"
             end
           end
-          define_method "jtable_attribute_#{field}" do
+          define_method "jtable_#{name}_attribute_#{field}" do
             if self.class.arel_table[field.to_sym].column.type == :date
               self.send(field).strftime("%m/%d/%Y %I:%M%P")
             else
@@ -32,21 +32,21 @@ module JTable
         end
         
         metaclass.instance_eval do
-          define_method "jtable_attributes" do
+          define_method "jtable_#{name}_attributes" do
             fields
           end
         end
         
-        define_method "jtable_item" do
+        define_method "jtable_#{name}_item" do
           item_hash = {}
           item_hash[:id] = self.id
           fields.each do |field|
-            item_hash[field.to_sym] = self.send("jtable_attribute_#{field}")
+            item_hash[field.to_sym] = self.send("jtable_#{name}_attribute_#{field}")
           end
           item_hash
         end
         
-        scope :jtable_search, lambda { |jtable_params|
+        scope "jtable_#{name}_search", lambda { |jtable_params|
           search_terms = jtable_params[:search]
           unless search_terms.blank?
             wheres = []
@@ -54,7 +54,7 @@ module JTable
               where_query = []
               fields.each do |field|
                 next unless jtable_params[:searchable_columns].include?(field.to_s)
-                where_query << self.send("jtable_search_#{field}", term)
+                where_query << self.send("jtable_#{name}_search_#{field}", term)
               end
               wheres << where(where_query.inject(&:or))
             end
@@ -62,41 +62,41 @@ module JTable
           end
         }
         
-        scope :jtable_single_search, lambda {|column, search_terms|
+        scope "jtable_#{name}_single_search", lambda {|column, search_terms|
           unless column.blank? or search_terms.blank?
             wheres = []
             search_terms.split(" ").each do |term|
-              wheres << where(self.send("jtable_search_#{column}", term))
+              wheres << where(self.send("jtable_#{name}_search_#{column}", term))
             end
             wheres.inject(&:merge)
           end
         }
         
-        scope :jtable_order, lambda {|column, direction|
+        scope "jtable_#{name}_order", lambda {|column, direction|
           if !column.blank? and !direction.blank? and %w(asc desc).include?(direction.downcase)
-            order(self.send("jtable_order_#{column}", direction))
+            order(self.send("jtable_#{name}_order_#{column}", direction))
           end
         }
         
-        scope :jtable_paginate, lambda {|per_page, page_start|
+        scope "jtable_#{name}_paginate", lambda {|per_page, page_start|
           limit(per_page.to_i).offset(page_start.to_i)
         }
         
-        scope :jtable_default, lambda {
+        scope "jtable_#{name}_default", lambda {
           
         }
         
-        scope :jtable_query, lambda { |jtable_params|
+        scope "jtable_#{name}_query", lambda { |jtable_params|
           jtable_params = HashWithIndifferentAccess.new(jtable_params)
           queries = []
-          queries << jtable_default()
-          queries << jtable_search(jtable_params)
+          queries << self.send("jtable_#{name}_default")
+          queries << self.send("jtable_#{name}_search", jtable_params)
           unless jtable_params[:column_search].blank?
             jtable_params[:column_search].each_pair do |column, search|
-              queries << jtable_single_search(column, search)
+              queries << self.send("jtable_#{name}_single_search", column, search)
             end
           end
-          queries << jtable_order(jtable_params[:sort_column], jtable_params[:sort_direction])
+          queries << self.send("jtable_#{name}_order", jtable_params[:sort_column], jtable_params[:sort_direction])
           queries.inject(&:merge)
         }
       end

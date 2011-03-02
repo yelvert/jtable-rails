@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe "PeopleController" do
+describe "BasicController" do
   before(:each) do
     @people_controller = PeopleController.new
     
@@ -24,8 +24,8 @@ describe "PeopleController" do
   end
   
   it "should return the appropriate json" do
-    people = Person.jtable_query(@params)
-    jtable_items = people.jtable_paginate(@params[:limit], @params[:offset]).collect(&:jtable_item)
-    @people_controller.jtable_for_json(people, @params).to_json.should eql({:total_items => people.count, :items => jtable_items}.to_json)
+    people = Person.jtable_basic_query(@params)
+    jtable_items = people.jtable_basic_paginate(@params[:limit], @params[:offset]).collect(&:jtable_basic_item)
+    @people_controller.jtable_for_json(:basic, people, @params).to_json.should eql({:total_items => people.count, :items => jtable_items}.to_json)
   end
 end
