@@ -49,8 +49,8 @@ describe "Basic" do
   end
   
   it "should search" do
-    person_1 = Person.first
-    person_2 = Person.last
+    person_1 = Fabricate(:person)
+    person_2 = Fabricate(:person)
     person_1.first_name = "John"
     person_1.last_name = "Smith"
     person_1.save
@@ -62,8 +62,8 @@ describe "Basic" do
   end
   
   it "should single column search" do
-    person_1 = Person.first
-    person_2 = Person.last
+    person_1 = Fabricate(:person)
+    person_2 = Fabricate(:person)
     person_1.first_name = "John"
     person_1.save
     person_2.first_name = "Johnathan"
