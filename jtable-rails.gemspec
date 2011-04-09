@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{jtable-rails}
-  s.version = "0.1.4"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Taylor Yelverton"]
-  s.date = %q{2011-02-28}
+  s.date = %q{2011-04-08}
   s.description = %q{A Rails gem to power the jTable jQuery plugin}
   s.email = %q{tny5357@gmail.com}
   s.extra_rdoc_files = [
@@ -33,9 +33,11 @@ Gem::Specification.new do |s|
     "lib/jtable-rails/railtie.rb",
     "lib/jtable-rails/version.rb",
     "lib/tasks/jtable_rails.rake",
-    "spec/controller_specs/people_controller_spec.rb",
+    "spec/controller_specs/basic_controller_spec.rb",
     "spec/fabricators/person.rb",
-    "spec/model_specs/person_spec.rb",
+    "spec/fabricators/place.rb",
+    "spec/model_specs/basic_spec.rb",
+    "spec/model_specs/one_to_one_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/rails_app/.DS_Store",
     "spec/support/rails_app/.gitignore",
@@ -44,15 +46,23 @@ Gem::Specification.new do |s|
     "spec/support/rails_app/Rakefile",
     "spec/support/rails_app/app/controllers/application_controller.rb",
     "spec/support/rails_app/app/controllers/people_controller.rb",
+    "spec/support/rails_app/app/controllers/places_controller.rb",
     "spec/support/rails_app/app/helpers/application_helper.rb",
     "spec/support/rails_app/app/helpers/people_helper.rb",
+    "spec/support/rails_app/app/helpers/places_helper.rb",
     "spec/support/rails_app/app/models/person.rb",
+    "spec/support/rails_app/app/models/place.rb",
     "spec/support/rails_app/app/views/layouts/application.html.erb",
     "spec/support/rails_app/app/views/people/_form.html.erb",
     "spec/support/rails_app/app/views/people/edit.html.erb",
     "spec/support/rails_app/app/views/people/index.html.erb",
     "spec/support/rails_app/app/views/people/new.html.erb",
     "spec/support/rails_app/app/views/people/show.html.erb",
+    "spec/support/rails_app/app/views/places/_form.html.erb",
+    "spec/support/rails_app/app/views/places/edit.html.erb",
+    "spec/support/rails_app/app/views/places/index.html.erb",
+    "spec/support/rails_app/app/views/places/new.html.erb",
+    "spec/support/rails_app/app/views/places/show.html.erb",
     "spec/support/rails_app/config.ru",
     "spec/support/rails_app/config/application.rb",
     "spec/support/rails_app/config/boot.rb",
@@ -69,6 +79,7 @@ Gem::Specification.new do |s|
     "spec/support/rails_app/config/locales/en.yml",
     "spec/support/rails_app/config/routes.rb",
     "spec/support/rails_app/db/migrate/20110207142623_create_people.rb",
+    "spec/support/rails_app/db/migrate/20110302024653_create_places.rb",
     "spec/support/rails_app/db/schema.rb",
     "spec/support/rails_app/db/seeds.rb",
     "spec/support/rails_app/public/images/jTable-icons.png",
@@ -77,6 +88,10 @@ Gem::Specification.new do |s|
     "spec/support/rails_app/public/stylesheets/jTable.css",
     "spec/support/rails_app/public/stylesheets/scaffold.css",
     "spec/support/rails_app/script/rails",
+    "spec/support/rails_app/test/fixtures/places.yml",
+    "spec/support/rails_app/test/functional/places_controller_test.rb",
+    "spec/support/rails_app/test/unit/helpers/places_helper_test.rb",
+    "spec/support/rails_app/test/unit/place_test.rb",
     "spec/support/rails_app/tmp/.DS_Store",
     "spec/support/rails_app/tmp/jtable.zip"
   ]
@@ -86,15 +101,20 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{A Rails gem to power the jTable jQuery plugin}
   s.test_files = [
-    "spec/controller_specs/people_controller_spec.rb",
+    "spec/controller_specs/basic_controller_spec.rb",
     "spec/fabricators/person.rb",
-    "spec/model_specs/person_spec.rb",
+    "spec/fabricators/place.rb",
+    "spec/model_specs/basic_spec.rb",
+    "spec/model_specs/one_to_one_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/rails_app/app/controllers/application_controller.rb",
     "spec/support/rails_app/app/controllers/people_controller.rb",
+    "spec/support/rails_app/app/controllers/places_controller.rb",
     "spec/support/rails_app/app/helpers/application_helper.rb",
     "spec/support/rails_app/app/helpers/people_helper.rb",
+    "spec/support/rails_app/app/helpers/places_helper.rb",
     "spec/support/rails_app/app/models/person.rb",
+    "spec/support/rails_app/app/models/place.rb",
     "spec/support/rails_app/config/application.rb",
     "spec/support/rails_app/config/boot.rb",
     "spec/support/rails_app/config/environment.rb",
@@ -108,8 +128,12 @@ Gem::Specification.new do |s|
     "spec/support/rails_app/config/initializers/session_store.rb",
     "spec/support/rails_app/config/routes.rb",
     "spec/support/rails_app/db/migrate/20110207142623_create_people.rb",
+    "spec/support/rails_app/db/migrate/20110302024653_create_places.rb",
     "spec/support/rails_app/db/schema.rb",
-    "spec/support/rails_app/db/seeds.rb"
+    "spec/support/rails_app/db/seeds.rb",
+    "spec/support/rails_app/test/functional/places_controller_test.rb",
+    "spec/support/rails_app/test/unit/helpers/places_helper_test.rb",
+    "spec/support/rails_app/test/unit/place_test.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -123,6 +147,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rails>, ["= 3.0.5"])
       s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
+      s.add_development_dependency(%q<ruby-debug19>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.0.5"])
     else
       s.add_dependency(%q<bundler>, [">= 0"])
@@ -131,6 +156,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rails>, ["= 3.0.5"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
+      s.add_dependency(%q<ruby-debug19>, [">= 0"])
       s.add_dependency(%q<rails>, ["= 3.0.5"])
     end
   else
@@ -140,6 +166,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rails>, ["= 3.0.5"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
+    s.add_dependency(%q<ruby-debug19>, [">= 0"])
     s.add_dependency(%q<rails>, ["= 3.0.5"])
   end
 end
