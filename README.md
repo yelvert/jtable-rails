@@ -27,4 +27,15 @@ One-to-One Association
       jtable :one_to_one, :first_name, :last_name, {:place => [:city, :state]}
     end
 
-This creates a jTable called *one_to_one* with the *person* attributes *first_name* and *last_name*, and the *place_attributes* *city* and *state*
+This creates a jTable called *one_to_one* with the *person* attributes *first_name* and *last_name*, and the *place_attributes* *city* and *state*.
+
+Custom Attributes
+-----------------
+    class Person < ActiveRecord::Base
+      jtable :custom, :first_name, :last_name, :date_of_birth
+      
+      def jtable_custom_attribute_date_of_birth
+        self.date_of_birth.strftime("%m/%d/%Y")
+      end
+    end
+This will make the *date_of_birth* field be displayed with the format *mm/dd/yyyy*.
