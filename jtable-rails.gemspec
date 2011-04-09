@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{jtable-rails}
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Taylor Yelverton"]
@@ -147,29 +147,29 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<fabrication>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_development_dependency(%q<rails>, ["= 3.0.5"])
+      s.add_development_dependency(%q<rails>, ["~> 3.0.0"])
       s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_development_dependency(%q<ruby-debug19>, [">= 0"])
-      s.add_runtime_dependency(%q<rails>, ["= 3.0.5"])
+      s.add_runtime_dependency(%q<rails>, ["~> 3.0.0"])
     else
       s.add_dependency(%q<bundler>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<fabrication>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_dependency(%q<rails>, ["= 3.0.5"])
+      s.add_dependency(%q<rails>, ["~> 3.0.0"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_dependency(%q<ruby-debug19>, [">= 0"])
-      s.add_dependency(%q<rails>, ["= 3.0.5"])
+      s.add_dependency(%q<rails>, ["~> 3.0.0"])
     end
   else
     s.add_dependency(%q<bundler>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<fabrication>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-    s.add_dependency(%q<rails>, ["= 3.0.5"])
+    s.add_dependency(%q<rails>, ["~> 3.0.0"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     s.add_dependency(%q<ruby-debug19>, [">= 0"])
-    s.add_dependency(%q<rails>, ["= 3.0.5"])
+    s.add_dependency(%q<rails>, ["~> 3.0.0"])
   end
 end
 
