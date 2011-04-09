@@ -103,7 +103,7 @@ DEPENDENCIES
   bundler
   fabrication
   jeweler (~> 1.5.2)
-  rails (= 3.0.5)
+  rails (~> 3.0.0)
   rspec
   ruby-debug19
   sqlite3-ruby
