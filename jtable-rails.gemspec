@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{jtable-rails}
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Taylor Yelverton"]
@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
     "spec/fabricators/person.rb",
     "spec/fabricators/place.rb",
     "spec/model_specs/basic_spec.rb",
+    "spec/model_specs/custom_attributes_spec.rb",
     "spec/model_specs/one_to_one_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/rails_app/.DS_Store",
@@ -105,6 +106,7 @@ Gem::Specification.new do |s|
     "spec/fabricators/person.rb",
     "spec/fabricators/place.rb",
     "spec/model_specs/basic_spec.rb",
+    "spec/model_specs/custom_attributes_spec.rb",
     "spec/model_specs/one_to_one_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/rails_app/app/controllers/application_controller.rb",
