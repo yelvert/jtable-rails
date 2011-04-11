@@ -151,9 +151,9 @@ module JTable
           queries << self.send("jtable_#{name}_default")
           queries << self.send("jtable_#{name}_search", jtable_params)
           unless jtable_params[:column_search].blank?
-            jtable_params[:column_search].each_pair do |column, search|
+            jtable_params[:column_search].each_pair {|column, search|
               queries << self.send("jtable_#{name}_single_search", column, search)
-            end
+            }
           end
           queries << self.send("jtable_#{name}_order", jtable_params[:sort_column], jtable_params[:sort_direction])
           queries.inject(&:merge)
